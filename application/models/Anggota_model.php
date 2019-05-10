@@ -46,6 +46,11 @@
 			$this->db->where('Kd_Anggota', $this->input->post('id'));
 			$this->db->update('anggota',$data);
 		}
+
+		public function baris()
+		{
+			return $this->db->get('anggota')->num_rows();
+		}
 	}
 
 
