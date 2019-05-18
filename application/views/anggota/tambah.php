@@ -7,7 +7,7 @@
 			    Form Tambah Data Anggota
 			  </div>
 			  <div class="card-body">
-			  	<form action="" method="POST">
+			  	<form action="" method="POST" id="formInput">
 					<div class="form-group">
 					    <label for="nama">Nama</label>
 					    <input type="text" name="nama" class="form-control" id="nama" value="<?= set_value('nama'); ?>">
@@ -35,3 +35,20 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#formInput").submit(function(e){
+			dataForm = $(this).serializeArray();
+			$.ajax({
+				method : 'POST',
+				url : 'tambah',
+				data : dataForm,
+				success : function(data){
+					alert(data);
+				}
+			})
+			e.preventDefault();
+		});
+	});
+</script>

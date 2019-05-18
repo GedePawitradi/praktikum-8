@@ -43,9 +43,15 @@
 
 		public function hapus($Kd_Anggota)
 		{
-			$this->Anggota_model->hapusDataAnggota($Kd_Anggota);
-			$this->session->set_flashdata('flash','Dihapus');
-			redirect('Anggota');
+			$where = array('Kd_Anggota' => $Kd_Anggota);		
+
+			if ($this->Anggota_model->hapusDataAnggota($where)){
+				echo "Berhasil menghapus data anggota";
+			}
+			else{
+				$error = $this->db->error();
+				echo $error['message'];
+			}
 		}
 
 		public function detail($Kd_Anggota)
@@ -57,6 +63,30 @@
 			$this->load->view('templates/footer');
 		}
 
+		public function update(){
+			$data = [
+				// "id" => $this->input->post('id', true),
+				"nama" => $this->input->post('nama', true),
+				"prodi" => $this->input->post('prodi', true),
+				"jenjang" => $this->input->post('jenjang', true),
+				"alamat" => $this->input->post('alamat', true)
+			];
+
+			$where = array(
+				'Kd_Anggota' => $this->input->post('id')
+			);
+
+			if ($this->Anggota_model->editDataAnggota($data,$where)) {
+					echo "Data anggota berhasil di edit";
+
+				}
+			else{
+					$error = $this->db->error();
+					echo $error['message'];
+					
+				}
+
+		}
 
 		public function edit($Kd_Anggota)
 		{
@@ -74,7 +104,6 @@
 				$this->load->view('templates/footer');
 			}
 			else{
-				$this->Anggota_model->editDataAnggota();
 				$this->session->set_flashdata('flash','Diubah');
 				redirect('Anggota');
 			}

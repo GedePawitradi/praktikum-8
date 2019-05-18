@@ -52,3 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['login'] = 'Auth';
+$route['login/auth'] = 'Auth/auth';
+$route['login/unauth'] = 'Auth/unauth';
+
+$route['buku'] = 'Buku';
+$route['buku/tambah'] = 'Buku/tambah';
+$route['buku/hapus/(:num)'] = 'Buku/hapus/$1';
+$route['buku/edit/(:num)'] = 'Buku/edit/$1';
+
+$route['anggota'] = 'Anggota';
+$route['anggota/tambah'] = 'Anggota/tambah';
+$route['anggota/hapus/(:num)'] = 'Anggota/hapus/$1';
+$route['anggota/edit/(:num)'] = 'Anggota/edit/$1';
+
+

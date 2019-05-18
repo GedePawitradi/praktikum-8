@@ -20,13 +20,14 @@
 				"alamat" => $this->input->post('alamat', true)
 			];
 
-			$this->db->insert('anggota',$data);
+			return $this->db->insert('anggota',$data);
 		}
 
 		public function hapusDataAnggota($Kd_Anggota)
 		{
-			$this->db->where('Kd_Anggota', $Kd_Anggota);
-			$this->db->delete('anggota');
+
+			$this->db->where($Kd_Anggota);
+			return $this->db->delete('anggota');
 		}
 
 		public function getAnggotaById($Kd_Anggota)
@@ -34,17 +35,10 @@
 			return $this->db->get_where('anggota',['Kd_Anggota'=>$Kd_Anggota])->row_array();
 		}
 
-		public function editDataAnggota()
+		public function editDataAnggota($where,$data)
 		{
-			$data = [
-				"nama" => $this->input->post('nama', true),
-				"prodi" => $this->input->post('prodi', true),
-				"jenjang" => $this->input->post('jenjang', true),
-				"alamat" => $this->input->post('alamat', true)
-			];
-
-			$this->db->where('Kd_Anggota', $this->input->post('id'));
-			$this->db->update('anggota',$data);
+			$this->db->where($where);
+			return $this->db->update('anggota', $data);
 		}
 
 		public function baris()

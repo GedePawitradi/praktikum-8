@@ -13,7 +13,7 @@
 	<?php endif; ?>
 	<div class="row mt-3">
 		<div class="col-md-6">
-			<a href="<?= base_url(); ?>anggota/tambah" class="btn btn-primary">Tambah Data Anggota</a>
+			<a href="<?= base_url(); ?>anggota/tambah"><button class="btn btn-primary">Tambah Data Anggota</button></a>
 		</div>
 	</div>
 
@@ -33,7 +33,7 @@
 				<tr>
 			 		 <td><?php echo $agt['Nama']; ?></td>
 			 		 <td>
-			 		 	<a  href="<?= base_url(); ?>anggota/hapus/<?= $agt['Kd_Anggota']; ?> " class="badge badge-danger float-right">Hapus</a>
+			 		 	<button  onclick="hapus(<?php echo $agt['Kd_Anggota']; ?>)" class="badge badge-danger float-right">Hapus</button>
 			 		 	<a  href="<?= base_url(); ?>anggota/edit/<?= $agt['Kd_Anggota']; ?> " class="badge badge-info float-right">Edit</a>
 			 		 	<a  href="<?= base_url(); ?>anggota/detail/<?= $agt['Kd_Anggota']; ?> " class="badge badge-primary float-right">Detail</a>
 			 		 </td>
@@ -56,4 +56,16 @@
 	$(document).ready(function() {
 	    $('#example').DataTable();
 	} );
+</script>
+
+<script type="text/javascript">
+	function hapus(Kd_Anggota){
+		$.ajax({
+			method : 'POST',
+			url : 'anggota/hapus/'+Kd_Anggota,
+			success : function(data){
+				alert(data);
+			}
+		})
+	}
 </script>

@@ -7,7 +7,7 @@
 			    Form Edit Data Anggota
 			  </div>
 			  <div class="card-body">
-			  	<form action="" method="POST">
+			  	<form method="POST" id="formUpdate">
 			  		<input type="hidden" name="id" value="<?= $anggota['Kd_Anggota']; ?>">
 					<div class="form-group">
 					    <label for="nama">Nama</label>
@@ -36,3 +36,23 @@
 		</div>
 	</div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
+<script type="text/javascript">
+	$(function() {
+		$('#formUpdate').submit(function(e){
+			dataForm = $(this).serializeArray();
+			$.ajax({
+				method : 'POST',
+				url : '<?= base_url().'anggota/update'; ?>',
+				data : dataForm,
+				success : function(data){
+					alert(data);
+				}
+			})
+			e.preventDefault();
+		});
+	});
+</script>
